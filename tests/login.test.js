@@ -39,4 +39,12 @@ describe('My Page Login', () => {
       .then((exists) => expect(exists).toEqual(true)))
   });
 
+  it.concurrent('should show no errors if both username and password are filled out', () => {
+    return navalia.run((chrome) => chrome.goto(`${pageUrl}auth/login`)
+      .then(() => chrome.type('[data-test="email]', 'joel@joel@gmail.com'))
+      .then(() => chrome.type('[data-test="password"]', '1234'))
+      .then(() => chrome.click('[data-test="submit"]'))
+      .then((errorExists) => expect(errorExists).toEqual(false)));
+  });
+
 });
