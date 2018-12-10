@@ -21,14 +21,14 @@ describe('My Page Login', () => {
   });
 
   it.concurrent('should have an email input', () => {
-    return navalia.run((chrome) => chrome.goto(`${pageUrl}auth/login`);
+    return navalia.run((chrome) => chrome.goto(`${pageUrl}auth/login`)
       .then(() => chrome.exists('[data-test="email"]'))
       .then((exists) => expect(exists).toEqual(true)))
 
   });
 
   it.concurrent('should have a password', () => {
-    return navalia.run((chrome) => chrome.goto(`${pageUrl}sauth/login`);
+    return navalia.run((chrome) => chrome.goto(`${pageUrl}sauth/login`)
       .then(() => chrome.exists('[data-test="password"]'))
       .then((exists) => expect(exists).toEqual(true)))
   });
