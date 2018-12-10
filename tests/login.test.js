@@ -21,14 +21,14 @@ describe('My Page Login', () => {
   });
 
   it.concurrent('should have an email input', () => {
-    return navalia.run((chrome) => chrome.goto(`${pageUrl}auth/login`);
+    return navalia.run((chrome) => chrome.goto(`${pageUrl}auth/login`)
       .then(() => chrome.exists('[data-test="email"]'))
       .then((exists) => expect(exists).toEqual(true)))
 
   });
 
   it.concurrent('should have a password', () => {
-    return navalia.run((chrome) => chrome.goto(`${pageUrl}sauth/login`);
+    return navalia.run((chrome) => chrome.goto(`${pageUrl}sauth/login`)
       .then(() => chrome.exists('[data-test="password"]'))
       .then((exists) => expect(exists).toEqual(true)))
   });
@@ -37,6 +37,14 @@ describe('My Page Login', () => {
     return navalia.run((chrome) => chrome.goto(`${pageUrl}auth/login`)
       .then(() => chrome.exists('[data-test="submit"]'))
       .then((exists) => expect(exists).toEqual(true)))
+  });
+
+  it.concurrent('should show no errors if both username and password are filled out', () => {
+    return navalia.run((chrome) => chrome.goto(`${pageUrl}auth/login`)
+      .then(() => chrome.type('[data-test="email]', 'joel@joel@gmail.com'))
+      .then(() => chrome.type('[data-test="password"]', '1234'))
+      .then(() => chrome.click('[data-test="submit"]'))
+      .then((errorExists) => expect(errorExists).toEqual(false)));
   });
 
 });
